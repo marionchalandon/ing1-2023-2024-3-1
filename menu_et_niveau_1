@@ -1,0 +1,215 @@
+#include "plus.h"
+//Fonctions
+void clearScreen(){
+    system("cls");
+}
+int menuPrincipal() {
+    int option;
+
+    do {
+        clearScreen();
+
+        printf("\n1.\t Regles du jeu \n");
+        printf("2.\t Lancer un nouveau Jeu a partir du niveau 1 \n");
+        printf("3.\t Charger une partie \n");
+        printf("4.\t Mot de passe  \n");
+        printf("5.\t Scores \n");
+        printf("6.\t Quitter \n");
+        scanf("%d", &option);
+    } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6);
+
+    return option;
+}
+int score(){
+    printf("score");
+
+}
+
+int motdepasse(){
+    char mdp[6];
+    scanf("%s", mdp);
+
+    if (strcmp(mdp, "manger") == 0 || strcmp(mdp, "Manger") == 0 || strcmp(mdp, "MANGER") == 0) {
+
+        clearScreen();
+        printf("\tNIVEAU\t1\n");
+    }
+
+    else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
+
+        clearScreen();
+        printf("\tNIVEAU\t2\n");
+    }
+
+    else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
+
+        clearScreen();
+
+        printf("\tNIVEAU\t3\n");
+
+    }
+
+    else if (strcmp(mdp, "snoopy") == 0 || strcmp(mdp, "Snoopy") == 0 || strcmp(mdp, "SNOOPY") == 0) {
+
+        clearScreen();
+
+        printf("\tNIVEAU\t4\n");
+    }
+    else{
+        clearScreen();
+
+        motdepasse();
+    }
+}
+
+int regles() {
+
+    char quitter;
+    printf("Les regles de la revanche de Snoopy: \n");
+    printf("1.\tRejoignez les oiseaux dans le temps imparti \n");
+    printf("2.\tNe touchez pas la balle, sinon vous perdez une vie \n");
+    printf("3-\tVous avez 3 vies \n");
+    printf("4-\tCertains blocs seront a deplacer, a pousser ou  a eviter!  \n\n");
+    printf("\tLes touches : \n\n");
+    printf("\t \t \t Z \n\n");
+    printf("\t \t Q\t S\t D");
+    printf("\n Taper Q pour revenir au menu principal\n");
+    while (1) {
+        quitter = getchar();
+        if (quitter == 'q' || quitter == 'Q') {
+            clearScreen();
+
+            break;
+        }
+    }
+
+    return 0;
+}
+int niveau1(){
+
+        int largeur =20;
+        int hauteur=10 ;
+        char cadre[hauteur][largeur];
+        int positionY = 5; // Position initiale X du pion (lignes)
+        int positionX = 10; // Position initiale Y du pion (colonnes)
+        char deplacement;
+
+        // Remplir le tableau et faire le cadre de X
+        for (int i = 0; i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++) {
+                if (j == 0 || j == largeur-1) {
+                    cadre[i][j] = 'X';
+                }
+                else if (i == 0|| i == hauteur-1) {
+                    cadre[i][j] = 'X';
+                }
+                else {
+                    cadre[i][j] = ' ';
+                }
+            }
+        }
+        // Placer le pion au centre du tableau
+        cadre[positionY][positionX] = 'S';
+
+        while (1) {
+
+            system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+            // Afficher le tableau car boucle
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 20; j++) {
+                    printf("%c ", cadre[i][j]);
+                }
+                printf("\n");
+            }
+
+            printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+            scanf(" %c", &deplacement);
+
+            // Effacer la position actuelle du pion
+            cadre[positionY][positionX] = ' ';
+
+            // Mettre à jour la position du pion en fonction du déplacement
+            if (deplacement == 'z' && positionY > 0) {
+                positionY--;
+            } else if (deplacement == 's' && positionY < 9) {
+                positionY++;
+            } else if (deplacement == 'q' && positionX > 0) {
+                positionX--;
+            } else if (deplacement == 'd' && positionX < 19) {
+                positionX++;
+            } else if (deplacement == 'q') {
+                break; // Quitter le programme si 'q' est appuyé
+            }
+
+            // Mettre à jour la position du pion sur le tableau
+            cadre[positionY][positionX] = 'S';
+        }
+
+        return 0;
+    }
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+//Main
+
+
+
+int main() {
+    //Affichage de début
+    printf("\x1b[1m \n"); // Activer le texte en gras
+
+    printf("\t LA REVANCHE DE SNOOPY \n\n");
+    sleep(2);
+    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+
+    clearScreen();
+
+
+
+
+ int option=menuPrincipal();
+    switch (option) {
+        case 1:
+            regles();
+            menuPrincipal();
+            break;
+
+
+        case 2:
+            printf("\tNIVEAU\t1");
+            niveau1();
+            break;
+
+
+        case 3:
+            printf("Choisir quelle sauvegarde utiliser\n");
+            break;
+
+
+        case 4:
+            printf("Entrer le mot de passe\n");
+            motdepasse();
+            break;
+
+
+        case 5:
+            printf("Votre hi-score est de %d\n",score);
+            break;
+
+
+        case 6:
+            clearScreen();
+            break;
+
+        default:
+            clearScreen();
+            break;
+
+
+    }
+    return 0;
+}

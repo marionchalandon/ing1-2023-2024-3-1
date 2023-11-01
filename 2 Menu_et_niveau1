@@ -1,0 +1,16 @@
+//Libraries
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <windows.h>
+//Structures
+
+
+//Prototypes
+int regles();
+int menuPrincipal() ;
+int motdepasse();
+int sauvegarde();
+void clearScreen();
+int niveau1();

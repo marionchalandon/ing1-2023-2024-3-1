@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+int main() {
+
+    int largeur = 20;
+    int hauteur = 10;
+    // Créer un tableau pour représenter le cadre
+    char cadre[hauteur][largeur];
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+
+    char deplacement;
+
+    // Position initiale du pion
+    cadre[5][10] = 'S';
+
+    while (1) {
+
+        // Afficher le cadre en parcourant le tableau
+        for (int i = 0; i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++) {
+                printf("%c", cadre[i][j]);
+            }
+            printf("\n");   // Passer à la ligne suivante
+        }
+
+        /*printf("q gauche\n");
+        printf("d droite\n");
+        printf("s bas\n");*/
+        scanf("%c", &deplacement);
+
+
+        // Effacer la position actuelle du pion
+        cadre[largeur][hauteur] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 's' ) {
+            hauteur--;
+        } else if (deplacement == 'z' ) {
+            hauteur++;
+        } else if (deplacement == 'q' ) {
+            largeur--;
+        } else if (deplacement == 'd' ) {
+            largeur++;
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[largeur][hauteur] = 'S';
+    }
+    return 0;
+}

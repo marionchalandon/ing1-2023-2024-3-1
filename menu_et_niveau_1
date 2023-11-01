@@ -1,8 +1,16 @@
 #include "plus.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Sommaires
+
+
+
 //Fonctions
-void clearScreen(){
+    //efface ce qui a deja ete ecrit
+    void clearScreen(){
     system("cls");
 }
+//menu principal
 int menuPrincipal() {
     int option;
 
@@ -16,23 +24,26 @@ int menuPrincipal() {
         printf("5.\t Scores \n");
         printf("6.\t Quitter \n");
         scanf("%d", &option);
+        clearScreen();
     } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6);
-
+    clearScreen();
     return option;
 }
+
+//en rapport avec le score et temps
 int score(){
     printf("score");
 
 }
-
+//les mots de passes qui menent aux niveaux
 int motdepasse(){
-    char mdp[6];
-    scanf("%s", mdp);
+    char mdp[7];//mdp a 7 chiffres + 0
+    scanf("%6s", mdp);
 
     if (strcmp(mdp, "manger") == 0 || strcmp(mdp, "Manger") == 0 || strcmp(mdp, "MANGER") == 0) {
 
         clearScreen();
-        printf("\tNIVEAU\t1\n");
+        niveau1();
     }
 
     else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
@@ -55,13 +66,19 @@ int motdepasse(){
 
         printf("\tNIVEAU\t4\n");
     }
+    else if (strcmp(mdp, "e") == 0 || strcmp(mdp, "E") == 0) {
+        clearScreen();
+        while (getchar() != '\n'); // Vider la mémoire tampon d'entrée
+        return menuPrincipal();
+
+    }
     else{
         clearScreen();
-
+        printf("Entrer le mot de passe ou taper E pour Exit au menu principal\n");
         motdepasse();
     }
 }
-
+//Affichage des regles
 int regles() {
 
     char quitter;
@@ -69,30 +86,53 @@ int regles() {
     printf("1.\tRejoignez les oiseaux dans le temps imparti \n");
     printf("2.\tNe touchez pas la balle, sinon vous perdez une vie \n");
     printf("3-\tVous avez 3 vies \n");
-    printf("4-\tCertains blocs seront a deplacer, a pousser ou  a eviter!  \n\n");
+    printf("4-\tTaper P pour mettre pause \n");
+    printf("5-\tCertains blocs seront a deplacer, a pousser ou  a eviter!  \n\n");
     printf("\tLes touches : \n\n");
     printf("\t \t \t Z \n\n");
     printf("\t \t Q\t S\t D");
-    printf("\n Taper Q pour revenir au menu principal\n");
+    printf("\n\n Taper E pour revenir au menu principal\n");
     while (1) {
-        quitter = getchar();
-        if (quitter == 'q' || quitter == 'Q') {
-            clearScreen();
 
+        quitter = getchar();
+
+        if (quitter == 'e' || quitter == 'E') {
+            clearScreen();
+            while (getchar() != '\n'); // Vider la mémoire tampon d'entrée
             break;
         }
     }
 
-    return 0;
+    return menuPrincipal();
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//NIVEAUX
 int niveau1(){
+    //Affichage pour commencer niveau
+    char start;
+    printf("\tNIVEAU\t1\n");
+    printf("Touchez A pour commencer\n");
+    while (1) {
+        scanf(" %c", &start);
+        if (start == 'a' || start == 'A') {
+            break; // Sort de la boucle si la touche "s" est pressée
+        }
+        clearScreen();
+        printf("\tNIVEAU\t1\n");
+        printf("Touchez A pour commencer\n");
+    }
+    clearScreen();
 
+//initialisation
         int largeur =20;
         int hauteur=10 ;
         char cadre[hauteur][largeur];
         int positionY = 5; // Position initiale X du pion (lignes)
         int positionX = 10; // Position initiale Y du pion (colonnes)
         char deplacement;
+
+
+
 
         // Remplir le tableau et faire le cadre de X
         for (int i = 0; i < hauteur; i++) {
@@ -144,16 +184,16 @@ int niveau1(){
 
             // Mettre à jour la position du pion sur le tableau
             cadre[positionY][positionX] = 'S';
-        }
 
-        return 0;
+        }
+        return menuPrincipal();
     }
 
 
 
 
 
-////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Main
 
 
@@ -170,17 +210,16 @@ int main() {
 
 
 
-
+while (1){
  int option=menuPrincipal();
     switch (option) {
         case 1:
             regles();
-            menuPrincipal();
+
             break;
 
 
         case 2:
-            printf("\tNIVEAU\t1");
             niveau1();
             break;
 
@@ -205,11 +244,10 @@ int main() {
             clearScreen();
             break;
 
+
         default:
             clearScreen();
+            menuPrincipal();
             break;
-
-
-    }
-    return 0;
-}
+}while (getchar() != '\n');
+}}

@@ -1,0 +1,22 @@
+//Libraries
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <windows.h>
+#include <conio.h>
+#include <stdbool.h>
+#include <unistd.h>
+
+//Structures
+
+
+//Prototypes
+int regles();
+int reglesp2();
+int menuPrincipal() ;
+int motdepasse();
+int sauvegarde();
+void clearScreen();
+int niveau1();
+void displayWithClear(const char *text, unsigned int seconds);

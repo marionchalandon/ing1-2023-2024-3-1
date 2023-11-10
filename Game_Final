@@ -157,6 +157,7 @@ int menuPrincipal() {
         printf("4.\t Mot de passe  \n");
         printf("5.\t Scores \n");
         printf("6.\t Quitter \n");
+        fflush(stdin);
         scanf("%d", &option);
         clearScreen();
     } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6);
@@ -515,7 +516,7 @@ int niveau1(){
             // Mettre à jour la position du pion sur le tableau
             cadre[positionY][positionX] = 'S';
         } else { //si le jeu est en pause
-            printf("Jeu en pause. Appuyez sur espace pour reprendre...\n"); //on affiche a l'utilisateur le jeu en pause
+            printf("Jeu en pause.\n Appuyez sur espace pour reprendre...\n"); //on affiche a l'utilisateur le jeu en pause
             int a = getch(); //on attneds que l'utilisateur re-appuye sur l'espace
             if (a == ' ') {
                 togglePause(&isPaused); //on remet le jeu en marche

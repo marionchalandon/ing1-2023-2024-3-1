@@ -1,10 +1,16 @@
 //Libraries
 #include <stdio.h>
+// 	permet de lire un caractère depuis l'entrée standard
+//getchar()
 #include <stdlib.h>
+//exit()  	cause un arrêt normale du programme.
+//system()La commande spécifiée par chaîne est transmise à l environnement hôte pour être exécuté par le processeur de commande.
 #include <unistd.h>
 #include <string.h>
-#include <windows.h>
+//manipulation de chaînes
+#include <windows.h> // sert pour la police et est propre à windows
 #include <conio.h>
+
 #include <stdbool.h>
 #include <unistd.h>
 #include <process.h>
@@ -25,7 +31,7 @@ void togglePause(bool *isPaused);
 
 
 
-        int menuPrincipal() ;
+int menuPrincipal() ;
 int regles();
 int reglesp2();
 int motdepasse();

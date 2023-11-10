@@ -1,6 +1,5 @@
 #include "plus.h"
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sommaires
 
@@ -38,14 +37,18 @@ void InfoNv1(){
 printf("\tNIVEAU\t1\n");
 printf("Objectif:\n");
 printf("\t Temps:\t 120\n");
-printf("\t Score Max:\t 10,000 pts\n");
 printf("\n");
 
 displayWithClear("S \t Snoopy                ", 1);
+    hideCursor();
 displayWithClear("# \t Bloc poussable 1 fois uniquement", 1);
+    hideCursor();
 displayWithClear("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc", 1);
+    hideCursor();
 displayWithClear("$ \t Bloc piege, GAME OVER                                            ", 1);
+    hideCursor();
 printf("\n");
+    hideCursor();
 printf("Touchez A pour commencer\n");
 
 }
@@ -156,11 +159,9 @@ int regles() {
     printf("1.\tRejoignez les oiseaux dans le temps imparti \n");
     printf("2.\tNe touchez pas la balle, sinon vous perdez une vie \n");
     printf("3-\tVous avez 3 vies \n");
-    printf("4-\tTapez P pour mettre pause \n");
-    printf("5-\tCertains blocs sont a deplacer, a pousser ou  a eviter!  \n\n");
-    printf("\tLes touches : \n\n");
-    printf("\t \t \t Z \n\n");
-    printf("\t \t Q\t S\t D");
+    printf("4-\tTapez ESP pour mettre pause \n");
+    printf("5-\tCertains blocs sont a deplacer, a pousser ou  a eviter! \n");
+    printf("6-\tUtilisez les fleches pour vous deplacer\n\n");
     printf("\n\n Tapez une touche pour afficher la page suivante\n");
     getch();
     clearScreen();

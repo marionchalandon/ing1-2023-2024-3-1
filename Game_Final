@@ -1,6 +1,5 @@
 #include "plus.h"
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sommaires
 
@@ -179,10 +178,7 @@ int reglesp2() {
     printf("# \t Bloc poussable 1 fois uniquement \n");
     printf("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc\n");
     printf("$ \t Bloc piege, GAME OVER  \n\n");
-    printf("\tLes touches : \n\n");
-    printf("\t \t \t Z \n\n");
-    printf("\t \t Q\t S\t D");
-    printf("\n\n Tapez une touche pour revenir au menu principal\n");
+   
     getch();
     clearScreen();
 

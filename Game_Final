@@ -13,6 +13,18 @@
     void clearScreen(){
     system("cls");
 }
+
+//change la couleur de la police
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}
+//https://www.developpez.net/forums/d309614/c-cpp/c/couleurs-c/
+
+
+
     //efface et affiche ligne suivante
 void displayWithClear(const char *text, unsigned int seconds) {
     printf("%s", text);
@@ -38,7 +50,7 @@ printf("\tNIVEAU\t1\n");
 printf("Objectif:\n");
 printf("\t Temps:\t 120\n");
 printf("\n");
-
+    hideCursor();
 displayWithClear("S \t Snoopy                ", 1);
     hideCursor();
 displayWithClear("# \t Bloc poussable 1 fois uniquement", 1);
@@ -99,7 +111,9 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
     }
 
     // Placer le pion au centre du tableau
+
     cadre[5][10] = 'S';
+
     cadre[5][9] = '#'; //affichage des blocs poussables autour de snoopy
     cadre[5][11] = '#';
     cadre[4][10] = '#';
@@ -108,7 +122,7 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
     cadre[2][1] = 'C'; //affichage des blocs cassables
     cadre[1][2] = 'C';
 
-
+    Color(6,0);
     cadre[7][2] = '$'; //affichage des blocs piégés
     cadre[6][2] = '$';
     cadre[7][3] = '$';
@@ -178,7 +192,7 @@ int reglesp2() {
     printf("# \t Bloc poussable 1 fois uniquement \n");
     printf("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc\n");
     printf("$ \t Bloc piege, GAME OVER  \n\n");
-   
+
     getch();
     clearScreen();
 
@@ -303,7 +317,7 @@ int niveau1(){
             }
 
             printf("Deplacez le pion avec les flèches, q (revenir au menu principal): "); //on affiche a l'utilisateur comment se deplacer
-            printf("%d", a);//l'ordinateur recupere la touvhe pressée par l'utilisateur
+            printf("%d", a);//l'ordinateur recupere la touche pressée par l'utilisateur
 
             // Effacer la position actuelle du pion
             cadre[positionY][positionX] = ' ';
@@ -491,7 +505,7 @@ int niveau1(){
 
 
 
-    return menuPrincipal();
+    return menuPrincipal();//retour au menu principal
 
 }
 
@@ -508,13 +522,14 @@ int niveau1(){
 int main() {
  //inititialisation
 
-
-
-
     //Affichage de début
     printf("\x1b[1m \n"); // Activer le texte en gras
 
-    printf("\t \n\nLA REVANCHE DE SNOOPY \n\n");
+    printf("\t \n\nLA REVANCHE DE");
+        Color(12,0);
+
+        printf(" SNOOPY \n\n");
+        Color(15,0);
     sleep(2);
     printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
 
@@ -526,12 +541,14 @@ while (1){
  int option=menuPrincipal();
     switch (option) {
         case 1:
+            //affiche les regles
             regles();
 
             break;
 
 
         case 2:
+            //Commence a partir du niveau 1
             niveau1();
             break;
 
@@ -558,6 +575,7 @@ while (1){
 
 
         default:
+            //rien ne se passe
             clearScreen();
             menuPrincipal();
             break;

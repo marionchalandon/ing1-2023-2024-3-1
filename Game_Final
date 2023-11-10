@@ -122,7 +122,7 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
     cadre[2][1] = 'C'; //affichage des blocs cassables
     cadre[1][2] = 'C';
 
-    Color(6,0);
+
     cadre[7][2] = '$'; //affichage des blocs piégés
     cadre[6][2] = '$';
     cadre[7][3] = '$';
@@ -209,7 +209,9 @@ int motdepasse(){
     if (strcmp(mdp, "manger") == 0 || strcmp(mdp, "Manger") == 0 || strcmp(mdp, "MANGER") == 0) {
 
         clearScreen();
+        printf("Taper sur A pour commencer");
         niveau1();
+
     }
 
     else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
@@ -259,7 +261,7 @@ int motdepasse(){
 //NIVEAUX
 int niveau1(){
     //Affichage pour commencer niveau
-    InfoNv1();
+
     AttenteDebut();
 
     clearScreen();
@@ -328,9 +330,11 @@ int niveau1(){
                 if (cadre[positionY - 1][positionX] == '$') { //si la case dessus presente un piege
                     vies--; //l'utilisateur perds une vie
                     system("cls");//la console s'efface
-                    printf("Game over\n");
-                    printf("il vous reste %d vies", vies); //affichage du nombre de vies restantes
-                    printf("Appuyez sur une touche pour recommencer...\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Il vous reste %d vies", vies); //affichage du nombre de vies restantes
+                    printf("\nAppuyez sur une touche pour recommencer...\n");
                     while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
                     }
                     reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX, &tempsRestant); //on re-affiche le tableau initiale
@@ -341,7 +345,10 @@ int niveau1(){
                 }
                 if (vies == 0) {
                     system("cls");
-                    printf("games over, vous avez epuisés vos vies\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Vous avez epuise vos vies\n");
                     printf("Appuyez sur une touche pour quitter le jeu...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
@@ -351,9 +358,11 @@ int niveau1(){
                 if (cadre[positionY + 1][positionX] == '$') {
                     vies--;
                     system("cls");
-                    printf("Game over\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                     printf("il vous reste %d vies", vies);
-                    printf("Appuyez sur une touche pour recommencer...\n");
+                    printf("\nAppuyez sur une touche pour recommencer...\n");
                     while (!_kbhit()) {
                     }
                     reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX, &tempsRestant);
@@ -364,8 +373,12 @@ int niveau1(){
                 }
                 if (vies == 0) {
                     system("cls");
-                    printf("games over, vous avez epuisés vos vies\n");
-                    printf("Appuyez sur une touche pour quitter le jeu...\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Vous avez epuise vos vies\n");
+
+                    printf("Appuyez sur une touche pour revenir au menu principal...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
                 }
@@ -375,9 +388,11 @@ int niveau1(){
                 if (cadre[positionY][positionX - 1] == '$') {
                     vies--;
                     system("cls");
-                    printf("Game over\n");
-                    printf("il vous reste %d vies", vies);
-                    printf("Appuyez sur une touche pour recommencer...\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Il vous reste %d vies", vies);
+                    printf("\nAppuyez sur une touche pour recommencer...\n");
                     while (!_kbhit()) {
                     }
                     reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX, &tempsRestant);
@@ -388,7 +403,10 @@ int niveau1(){
                 }
                 if (vies == 0) {
                     system("cls");
-                    printf("games over, vous avez epuisés vos vies\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Vous avez epuise vos vies\n");
                     printf("Appuyez sur une touche pour quitter le jeu...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
@@ -400,9 +418,11 @@ int niveau1(){
                 if (cadre[positionY][positionX + 1] == '$') {
                     vies--;
                     system("cls");
-                    printf("Game over\n");
-                    printf("il vous reste %d vies", vies);
-                    printf("Appuyez sur une touche pour recommencer...\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Il vous reste %d vies", vies);
+                    printf("\nAppuyez sur une touche pour recommencer...\n");
                     while (!_kbhit()) {
                     }
                     reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX, &tempsRestant);
@@ -413,7 +433,10 @@ int niveau1(){
                 }
                 if (vies == 0) {
                     system("cls");
-                    printf("games over, vous avez epuisés vos vies\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Vous avez epuise vos vies\n");
                     printf("Appuyez sur une touche pour quitter le jeu...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
@@ -454,7 +477,10 @@ int niveau1(){
                 vies--; //le joueur perds une vie
                 if (vies == 0) { //si le joueur n'a plus de vie
                     system("cls");
-                    printf("game over\n");
+                    printf("\x1b[1;10m\n");// Activer le texte en gras
+                    printf("GAME OVER\n\n");
+                    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                    printf("Vous avez epuise vos vies\n");
                     printf("Appuyez sur une touche pour quitter le jeu...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
@@ -462,7 +488,7 @@ int niveau1(){
                     system("cls");
                     printf("le temps est écoulé, vous perdez une vie\n");
                     printf("il ne vous reste plus que %d vie\n", vies);
-                    printf("Appuyez sur une touche pour recommencer...\n");
+                    printf("\nAppuyez sur une touche pour recommencer...\n");
                     while (!_kbhit()) {
                     }
                     reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX, &tempsRestant);//on reinitialise le tableau
@@ -476,9 +502,10 @@ int niveau1(){
                 vCount--; //le nombre d'oiseaux reduit de 1
                 if (vCount == 0) { //si le joueur a recuperer tout les oiseaux
                     system("cls"); // Effacer l'écran
-                    printf("Bravo ! Niveau réussi\n"); //le joueur a reussi le niveau
+                    printf("Bravo ! Niveau reussi\n"); //le joueur a reussi le niveau
                     score = tempsRestant * 100; //calcul du score en fonction du temps restants
                     printf("Score : %d\n", score);
+                    sleep(5);
                     printf("Appuyez sur une touche pour quitter le jeu...\n");
                     getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
                     break;
@@ -523,7 +550,9 @@ int main() {
  //inititialisation
 
     //Affichage de début
-    printf("\x1b[1m \n"); // Activer le texte en gras
+hideCursor();
+    printf("\x1b[1;20m\n");// Activer le texte en gras
+
 
     printf("\t \n\nLA REVANCHE DE");
         Color(12,0);
@@ -549,6 +578,7 @@ while (1){
 
         case 2:
             //Commence a partir du niveau 1
+            InfoNv1();
             niveau1();
             break;
 

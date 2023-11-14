@@ -6,6 +6,7 @@
 //exit()  	cause un arrêt normale du programme.
 //system()La commande spécifiée par chaîne est transmise à l environnement hôte pour être exécuté par le processeur de commande.
 #include <unistd.h>
+
 #include <string.h>
 //manipulation de chaînes
 #include <windows.h> // sert pour la police et est propre à windows
@@ -20,62 +21,18 @@
 
 //Prototypes
 void clearScreen();
-void displayWithClear(const char *text, unsigned int seconds);
+void displayWithClear(const char *texte, unsigned int seconds);
+void Color(int couleurDuTexte,int couleurDeFond);
 void hideCursor();
+void gameover();
+void Reussi();
+void Title();
 void InfoNv1();
 void Chronometre(void* params);
 void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int positionY, int positionX);
 void reinitialiserJeu(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int *positionY, int *positionX,  int *tempsRestant);
 void togglePause(bool *isPaused);
-
-
-
-
-int menuPrincipal() ;
-int regles();
-int reglesp2();
-int motdepasse();
-
-
-int sauvegarde();
-int scoreNv1();
-int scoreNv2();
-int scoreNv3();
-int scoreNv4();
-int hiscore();
-
-
-int niveau1();
-//Libraries
-#include <stdio.h>
-// 	permet de lire un caractère depuis l'entrée standard
-//getchar()
-#include <stdlib.h>
-//exit()  	cause un arrêt normale du programme.
-//system()La commande spécifiée par chaîne est transmise à l environnement hôte pour être exécuté par le processeur de commande.
-#include <unistd.h>
-#include <string.h>
-//manipulation de chaînes
-#include <windows.h> // sert pour la police et est propre à windows
-#include <conio.h>
-
-#include <stdbool.h>
-#include <unistd.h>
-#include <process.h>
-
-//Structures
-
-
-//Prototypes
-void clearScreen();
-void displayWithClear(const char *text, unsigned int seconds);
-void hideCursor();
-void InfoNv1();
-void Chronometre(void* params);
-void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int positionY, int positionX);
-void reinitialiserJeu(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int *positionY, int *positionX,  int *tempsRestant);
-void togglePause(bool *isPaused);
-
+void effacerEcranPartiel(char cadre[10][20], int hauteur, int largeur);
 
 
 

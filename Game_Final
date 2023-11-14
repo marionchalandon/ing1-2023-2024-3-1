@@ -5,7 +5,7 @@
 //modifier les pauses
 //afficher en ANSI
 //Mettre des couleurs
-
+//couleur des symboles: 'S'3, 'V'14, '$'4, 'C'8,'#'10->2
 
 //Fonctions
 
@@ -24,7 +24,11 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
 }
-//https://www.developpez.net/forums/d309614/c-cpp/c/couleurs-c/
+
+
+
+//https://stackoverflow.com/questions/15316455/how-to-change-font-size-in-console-application-using-c
+
 
 
 
@@ -51,6 +55,44 @@ void hideCursor() {
     cursorInfo.dwSize = 100;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
+void gameover() {
+
+    printf(" SSSSS       SS     SS    SS  SSSSSS      SSSSSS    S      S  SSSSSS  SSSSSS   \n");
+    printf("S      S    S  S    SSS  SSS  SS         S      S   S      S  SS      S    S          \n");
+    printf("S          S    S   S  SS  S  SSSS      S        S    S    S  SSSS    SSSSSS        \n");
+    printf("S    SSS  S SSSS S  S      S  SSSS      S        S    S    S  SSSS    S   S           \n");
+    printf("S     SS  S      S  S      S  SS         S      S      S   S  SS      S    S       \n");
+    printf(" SSSSS    S      S  S      S  SSSSSS      SSSSSS        SSS   SSSSSS  S     S      \n");
+    printf("\n\n");
+}
+void Reussi() {
+    printf("SSSSSSS   SSSSSSS      SS     S      S    SSSSS       S   \n");
+    printf("S     SS  S     S     S  S    S      S   S     S      S   \n");
+    printf("S    SS   S SSS S    S    S     S    S  S       S     S   \n");
+    printf("S   SSSS  S    S    S SSSS S    S    S  S       S     S      \n");
+    printf("S      S  S     S   S      S     S   S   S     S             \n");
+    printf("SSSSSSSS  S      S  S      S      SSS     SSSSS       S        \n");
+    printf("\n\n");
+}
+
+void Title(){
+    printf(" SSSSSS   SS     S    SSSSS      SSSSS    SSSSSSSS  S       S     \n");
+    printf("SS        S S    S   S     S    S     S   S      S   S     S       \n");
+    printf("  SSS     S S    S  S       S  S       S  S      S    S   S     \n");
+    printf("    SSS   S  S   S  S       S  S       S  S SSSS       SSS        \n");
+    printf("      SS  S  S   S   S     S    S     S   S             S     \n");
+    printf("SSSSSS S  S   SS S    SSSSS      SSSSS    S             S     \n");
+    printf("\n\n");
+}
+
+
+
+
+
+
+
+
+
 
 void InfoNv1(){
     printf("\tNIVEAU\t1\n");
@@ -58,13 +100,20 @@ void InfoNv1(){
     printf("\t Temps:\t 120\n");
     printf("\n");
     hideCursor();
-    displayWithClear("S \t Snoopy                ", 1);
+    Color(3,0);
+    displayWithClear("S \t Snoopy                          ", 1);
+    Color(14,0);
+    displayWithClear("V \t Oiseaux a recuperer                          ", 1);
+    Color(10,0);
     hideCursor();
     displayWithClear("# \t Bloc poussable 1 fois uniquement", 1);
+    Color(8,0);
     hideCursor();
     displayWithClear("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc", 1);
+    Color(4,0);
     hideCursor();
     displayWithClear("$ \t Bloc piege, GAME OVER                                            ", 1);
+    Color(15,0);
     hideCursor();
     printf("\n");
     hideCursor();
@@ -108,6 +157,7 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
             }
             // Ajout des 'V' à chaque coin du cadre à l'intérieur
             if ((i == 1 && (j == 1 || j == largeur - 2)) || (i == hauteur - 2 && (j == 1 || j == largeur - 2))) {
+                Color(14,0);
                 cadre[i][j] = 'V';
             }
         }
@@ -123,10 +173,12 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
 
     cadre[5][10] = 'S';
 
+
     cadre[5][9] = '#'; //affichage des blocs poussables autour de snoopy
     cadre[5][11] = '#';
     cadre[4][10] = '#';
     cadre[6][10] = '#';
+
 
     cadre[2][1] = 'C'; //affichage des blocs cassables
     cadre[1][2] = 'C';
@@ -135,6 +187,7 @@ void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteu
     cadre[7][2] = '$'; //affichage des blocs piégés
     cadre[6][2] = '$';
     cadre[7][3] = '$';
+
 }
 
 void reinitialiserJeu(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int *positionY, int *positionX,  int *tempsRestant) { //sous fonction qui permet de reinitaliser le jeu (placement et chrono)
@@ -170,7 +223,7 @@ int menuPrincipal() {
         fflush(stdin);
         scanf("%d", &option);
         clearScreen();
-    } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6);
+    } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7);
     clearScreen();
     return option;
 }
@@ -199,11 +252,29 @@ int reglesp2() {
     char quitter;
     printf("Les regles de la revanche de Snoopy (2/2): \n");
     printf("\t\tInformations sur les symboles  \n");
-    printf("S \t Snoopy \n");
-    printf("# \t Bloc poussable 1 fois uniquement \n");
-    printf("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc\n");
-    printf("$ \t Bloc piege, GAME OVER  \n\n");
-
+    Color(3,0);
+    printf("S \t ");
+    Color(15,0);
+    printf("Snoopy \n");
+    Color(14,0);
+    printf("V \t ");
+    Color(15,0);
+    printf("Oiseaux a recuperer\n");
+    Color(10,0);
+    printf("# \t ");
+    Color(15,0);
+    printf("Bloc poussable 1 fois uniquement \n");
+    Color(8,0);
+    printf("C \t ");
+    Color(15,0);
+    printf("Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc\n");
+    Color(4,0);
+    printf("$ \t ");
+    Color(15,0);
+    printf("Bloc piege");
+    Color(12,0);
+    printf(", GAME OVER  \n\n");
+    Color(15,0);
     getch();
     clearScreen();
 
@@ -345,7 +416,7 @@ int niveau1(){
 
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -360,12 +431,12 @@ int niveau1(){
                         system("cls");//la console s'efface
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
 
-                        printf("Il vous reste %d vies", vies); //affichage du nombre de vies restantes
+                        printf("Il vous reste %d vie", vies); //affichage du nombre de vies restantes
                         sleep(3);
                         printf("\nAppuyez sur une touche pour recommencer...\n");
                         while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
@@ -386,7 +457,7 @@ int niveau1(){
                         system("cls");
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -400,7 +471,7 @@ int niveau1(){
                         system("cls");//la console s'efface
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -426,7 +497,7 @@ int niveau1(){
                         system("cls");
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -440,7 +511,7 @@ int niveau1(){
                         system("cls");//la console s'efface
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -466,7 +537,7 @@ int niveau1(){
                         system("cls");
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -480,7 +551,7 @@ int niveau1(){
                         system("cls");//la console s'efface
                         printf("\x1b[1;10m\n");// Activer le texte en gras
                         Color(4,0);
-                        printf("GAME OVER\n\n");
+                        gameover();
                         Color(15,0);
                         printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                         sleep(2);
@@ -534,7 +605,7 @@ int niveau1(){
                     system("cls");
                     printf("\x1b[1;10m\n");// Activer le texte en gras
                     Color(4,0);
-                    printf("GAME OVER\n\n");
+                    gameover();
                     Color(15,0);
                     printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                     sleep(2);
@@ -565,7 +636,9 @@ int niveau1(){
 
                     printf("\x1b[1;10m\n");// Activer le texte en gras
                     Color(10,0);
-                    printf("BRAVO! NIVEAU REUSSI\n"); //le joueur a reussi le niveau
+                    Reussi();
+
+                    printf(" NIVEAU REUSSI\n"); //le joueur a reussi le niveau
                     Color(15,0);
                     printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
                     sleep(2);
@@ -581,7 +654,9 @@ int niveau1(){
             }
 
             // Mettre à jour la position du pion sur le tableau
+            Color(3,0);
             cadre[positionY][positionX] = 'S';
+            Color(15,0);
 
 
         } else { //si le jeu est en pause
@@ -634,16 +709,15 @@ int main() {
 
     //Affichage de début
     hideCursor();
-    printf("\x1b[1;20m\n");// Activer le texte en gras
 
 
-    printf("\t \n\nLA REVANCHE DE");
-    Color(12,0);
+    printf(" \n\n \t\tLA REVANCHE DE\n");
+    Color(3,0);
 
-    printf(" SNOOPY \n\n");
+    Title();
     Color(15,0);
-    sleep(2);
-    printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+    sleep(4);
+
 
     clearScreen();
 
@@ -686,6 +760,9 @@ int main() {
                 // Quitte le programme
                 return 0;
 
+            case 7:
+                niveau1();
+                break;
 
             default:
                 //rien ne se passe
@@ -694,3 +771,4 @@ int main() {
                 break;
         }while (getchar() != '\n');
     }}
+

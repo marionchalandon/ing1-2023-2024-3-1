@@ -370,6 +370,8 @@ int niveau1(){
     bool gameOver = false;
     bool isPaused = false;  // Variable pour gérer la pause
     int tempsRestantPendantPause = 0; //variable qui suit le temps pendant la pause
+    // Ajoutez une variable pour suivre si le message a déjà été affiché
+
 
 
 
@@ -402,7 +404,7 @@ int niveau1(){
 
             printf("Deplacez le pion avec les fleches, Q (revenir au menu principal): "); //on affiche a l'utilisateur comment se deplacer
             printf("%d", a);//l'ordinateur recupere la touche pressée par l'utilisateur
-
+            printf("\n\n rappel :\n V : oiseaux, $ : blocs piégés, C : blocs cassables, # : blocs poussables ");
             // Effacer la position actuelle du pion
             cadre[positionY][positionX] = ' ';
 
@@ -661,8 +663,13 @@ int niveau1(){
 
         } else { //si le jeu est en pause
             Color(15, 8);
+            COORD cursorPos; // Définir la position du curseur pour ue la phrase ne s'affiche qu'un seule fois 
+            cursorPos.X = 0;
+            cursorPos.Y = 15;
+            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPos);
             printf("\nJEU EN PAUSE   Appuyez sur ESPACE pour reprendre et Q pour revenir au menu principal");
             //on affiche a l'utilisateur le jeu en pause
+
 
 
 
@@ -771,4 +778,3 @@ int main() {
                 break;
         }while (getchar() != '\n');
     }}
-

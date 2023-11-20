@@ -1,0 +1,65 @@
+//Libraries
+#include <stdio.h>
+// 	permet de lire un caractère depuis l'entrée standard
+//getchar()
+#include <stdlib.h>
+//exit()  	cause un arrêt normale du programme.
+//system()La commande spécifiée par chaîne est transmise à l environnement hôte pour être exécuté par le processeur de commande.
+#include <unistd.h>
+
+#include <string.h>
+//manipulation de chaînes
+#include <windows.h> // sert pour la police et est propre à windows
+#include <conio.h>
+
+#include <stdbool.h>
+#include <unistd.h>
+#include <process.h>
+
+//Structures
+
+//Prototypes
+  //utile
+void clearScreen();
+void displayWithClear(const char *texte, unsigned int seconds);
+void effacerEcranPartiel(char cadre[10][20], int hauteur, int largeur);
+void hideCursor();
+void Color(int couleurDuTexte,int couleurDeFond);
+
+  //affichage
+void gameover();
+void Reussi();
+void Title();
+int afficheSauvegarde();
+
+  //pour les options
+void InfoNv1();
+void Chronometre(void* params);
+void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int positionY, int positionX);
+void reinitialiserJeu(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int *positionY, int *positionX,  int *tempsRestant);
+void togglePause(bool *isPaused);
+void comparateurScoreNv1(int a);
+int comparateurScoreNv2 (int b);
+int comparateurScoreNv3 (int c);
+int comparateurScoreNv4 (int d);
+void sauvegarde(int niveau, int tempsRestant, int score);
+
+
+
+ //options
+int menuPrincipal() ;
+int regles();
+int reglesp2();
+int motdepasse();
+int chargementSauvegarde();
+int hiscore();
+
+
+int scoreNv1();
+int scoreNv2();
+int scoreNv3();
+int scoreNv4();
+
+
+  //niveaux
+int niveau1();

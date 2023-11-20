@@ -1,0 +1,1207 @@
+#include "plus.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//INFORMATION
+//Sommaires à faire
+//modifier les pauses
+//afficher en ANSI
+//Mettre des couleurs
+//couleur des symboles: 'S'3, 'V'14, '$'4, 'C'8,'#'10->2
+//blinder tout
+//verifier 6
+//sauvegarde
+//score
+//
+
+
+
+
+
+
+//Fonctions affichage
+//efface ce qui a deja ete ecrit
+void clearScreen(){
+    system("cls");
+}
+
+//efface et affiche ligne suivante
+void displayWithClear(const char *text, unsigned int seconds) {
+    printf("%s", text);
+    fflush(stdout);
+    usleep(2 * 1000000); // ne se passe rien pour un temps donné
+    printf("\r"); // curseur revient au debut de la ligne
+    for (int i = 0; i < strlen(text); i++) {
+        putchar(' '); // superpose les mots avec des espaces "efface"
+    }
+    printf("\r"); // curseur revient au debut de la ligne
+}
+
+void effacerEcranPartiel(char cadre[10][20], int hauteur, int largeur) { //fonction qui permet d'affacer partiellement l'ecran, afin d'eviter un clignotement
+    COORD cursorPos; // Définir la position du curseur à l'angle supérieur gauche de la console
+    cursorPos.X = 0;
+    cursorPos.Y = 0;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPos);
+
+    for (int i = 0; i < hauteur; i++) { // Parcourir chaque ligne du cadre
+        for (int j = 0; j < largeur; j++) { // Parcourir chaque colonne du cadre
+            printf("%c", cadre[i][j]); // Afficher le caractère à la position actuelle dans le cadre
+        }
+        printf("\n");
+    }
+}
+
+void effacerBasCadre( int hauteur, int largeur) { //fonction qui permet d'affacer partiellement l'ecran, afin d'eviter un clignotement
+    COORD cursorPos; // Définir la position du curseur à l'angle supérieur gauche de la console
+    cursorPos.X = 0;
+    cursorPos.Y = 14;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPos);
+
+    for (int i = 0; i < hauteur; i++) { // Parcourir chaque ligne du cadre
+        for (int j = 0; j < largeur; j++) { // Parcourir chaque colonne du cadre
+            printf(" "); //
+        }
+        printf("\n");
+    }
+
+    cursorPos.X = 0;
+    cursorPos.Y = 14;
+}
+
+
+
+//fonction qui permet de cacher le curseur de la souris, pour un affichage plus agréable
+void hideCursor() {
+    CONSOLE_CURSOR_INFO cursorInfo;
+    cursorInfo.bVisible = false;
+    cursorInfo.dwSize = 100;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+
+//change la couleur de la police
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}
+
+
+void gameover() {
+
+    printf(" SSSSS       SS     SS    SS  SSSSSS      SSSSSS    S      S  SSSSSS  SSSSSS   \n");
+    printf("S      S    S  S    SSS  SSS  SS         S      S   S      S  SS      S    S          \n");
+    printf("S          S    S   S  SS  S  SSSS      S        S    S    S  SSSS    SSSSSS        \n");
+    printf("S    SSS  S SSSS S  S      S  SSSS      S        S    S    S  SSSS    S   S           \n");
+    printf("S     SS  S      S  S      S  SS         S      S      S   S  SS      S    S       \n");
+    printf(" SSSSS    S      S  S      S  SSSSSS      SSSSSS        SSS   SSSSSS  S     S      \n");
+    printf("\n\n");
+}
+void Reussi() {
+    printf("SSSSSSS   SSSSSSS      SS     S      S    SSSSS       S   \n");
+    printf("S     SS  S     S     S  S    S      S   S     S      S   \n");
+    printf("S    SS   S SSS S    S    S     S    S  S       S     S   \n");
+    printf("S   SSSS  S    S    S SSSS S    S    S  S       S     S      \n");
+    printf("S      S  S     S   S      S     S   S   S     S             \n");
+    printf("SSSSSSSS  S      S  S      S      SSS     SSSSS       S        \n");
+    printf("\n\n");
+}
+
+void Title(){
+    printf(" SSSSSS   SS     S    SSSSS      SSSSS    SSSSSSSS  S       S     \n");
+    printf("SS        S S    S   S     S    S     S   S      S   S     S       \n");
+    printf("  SSS     S S    S  S       S  S       S  S      S    S   S     \n");
+    printf("    SSS   S  S   S  S       S  S       S  S SSSS       SSS        \n");
+    printf("      SS  S  S   S   S     S    S     S   S             S     \n");
+    printf("SSSSSS S  S   SS S    SSSSS      SSSSS    S             S     \n");
+    printf("\n\n");
+}
+
+int afficheSauvegarde(){
+    int  dd1, dd2, dd3;
+    int niveau1, niveau2, niveau3;
+    int tempsRestant1, tempsRestant2, tempsRestant3 ;
+    int score1, score2, score3;
+
+
+    //ouverture fichier
+
+    FILE *Sauve1 = fopen(Sauve1, "r");
+    FILE* Sauve2 = fopen(Sauve2, "r");
+    FILE* Sauve3 = fopen(Sauve3, "r");
+
+    //lecture fichier utilisé?
+    fscanf(Sauve1,"%d",&dd1);
+    fscanf(Sauve2,"%d",&dd2);
+    fscanf(Sauve3,"%d",&dd3);
+
+    //Se positionner pour trouver les infos du niveau
+    fseek(Sauve1, 0, SEEK_SET);
+    fseek(Sauve2, 0, SEEK_SET);
+    fseek(Sauve3, 0, SEEK_SET);
+
+    //Se positionner pour trouver les infos du niveau
+    fscanf(Sauve1,"%d\t%d\t%d",&niveau1,&tempsRestant1,&score1);
+    fscanf(Sauve2,"%d\t%d\t%d",&niveau2,&tempsRestant2,&score2);
+    fscanf(Sauve3,"%d\t%d\t%d",&niveau3,&tempsRestant3,&score3);
+//mess d'erreur
+    if (Sauve1 == NULL|| Sauve2 == NULL|| Sauve3 == NULL) {
+        printf("Erreur d'ouverture de fichier.");
+
+    }
+
+    //fermeture fichier lecture
+    fclose(Sauve1);
+    fclose(Sauve2);
+    fclose(Sauve3);
+
+//choix du fichier à charger
+    clearScreen();
+    printf("\tQuelle sauvegarde voulez vous charger?");
+    printf("Sauvegarde 1\t :\t Niveau %d\tTemps restant : %d\tScore: %d\n",niveau1,tempsRestant1,score1);
+    printf("Sauvegarde 2\t :\t Niveau %d\tTemps restant : %d\tScore: %d\n",niveau2,tempsRestant2,score2);
+    printf("Sauvegarde 3\t :\t Niveau %d\tTemps restant : %d\tScore: %d\n",niveau3,tempsRestant3,score3);
+}
+
+
+
+
+
+
+
+
+
+void InfoNv1(){
+    printf("\tNIVEAU\t1\n");
+    printf("Objectif:\n");
+    printf("\t Temps:\t 120\n");
+    printf("\n");
+    hideCursor();
+    Color(3,0);
+    displayWithClear("S \t Snoopy                          ", 1);
+    Color(14,0);
+    displayWithClear("V \t Oiseaux a recuperer                          ", 1);
+    Color(10,0);
+    hideCursor();
+    displayWithClear("# \t Bloc poussable 1 fois uniquement", 1);
+    Color(8,0);
+    hideCursor();
+    displayWithClear("C \t Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc", 1);
+    Color(4,0);
+    hideCursor();
+    displayWithClear("$ \t Bloc piege, GAME OVER                                            ", 1);
+    Color(15,0);
+    hideCursor();
+    printf("\n");
+    hideCursor();
+    printf("Touchez A pour commencer\n");
+
+}
+void AttenteDebut() {
+    char start;
+    while (1) {
+        start = getch();
+        if (start == 'a' || start == 'A') {
+            break;
+        }
+        clearScreen();
+        InfoNv1();
+        printf("Touchez A pour commencer\n");
+
+    }
+}
+
+// Fonction du chronomètre
+void Chronometre(void* params) {
+    int* tempsRestant = (int*)params;
+
+    while (*tempsRestant > 0) {
+        Sleep(1000);  // Attendre 1 seconde
+        (*tempsRestant)--;
+    }
+}
+
+
+void initialiserGrille(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int positionY, int positionX) {
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur - 1) {
+                cadre[i][j] = 'X';
+            } else if (i == 0 || i == hauteur - 1) {
+                cadre[i][j] = 'X';
+            } else {
+                cadre[i][j] = ' ';
+            }
+            // Ajout des 'V' à chaque coin du cadre à l'intérieur
+            if ((i == 1 && (j == 1 || j == largeur - 2)) || (i == hauteur - 2 && (j == 1 || j == largeur - 2))) {
+                Color(14,0);
+                cadre[i][j] = 'V';
+            }
+        }
+    }
+
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            blocsPousses[i][j] = false;
+        }
+    }
+
+    // Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[5][9] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[5][11] = '#';
+    cadre[4][10] = '#';
+    cadre[6][10] = '#';
+
+
+    cadre[2][1] = 'C'; //affichage des blocs cassables
+    cadre[1][2] = 'C';
+
+
+    cadre[7][2] = '$'; //affichage des blocs piégés
+    cadre[6][2] = '$';
+    cadre[7][3] = '$';
+
+}
+
+void reinitialiserJeu(char cadre[10][20], bool blocsPousses[10][20], int hauteur, int largeur, int *positionY, int *positionX,  int *tempsRestant) { //sous fonction qui permet de reinitaliser le jeu (placement et chrono)
+    // Réinitialiser le tableau
+    initialiserGrille(cadre, blocsPousses, hauteur, largeur, 5, 10);
+    *positionY = 5;
+    *positionX = 10;
+    *tempsRestant = 120; // Réinitialiser le chronomètre à 120 secondes
+}
+
+void togglePause(bool *isPaused) { //sous fonction qui permet de gerer la pause
+    *isPaused = !*isPaused;
+}
+
+//tableau pour les scores
+
+int comparateurScoreNv1 (int a) {
+    int valeurs=0;
+
+    FILE*TScoreNv1 = fopen("./Projet d'Info/TScoreNv1.txt", "w+");// ouvre le fichier monfichier.txt se trouvant à côté de l'exécutable
+    //creation tableau dans le fichier
+    if (TScoreNv1 == NULL) {
+        fprintf(TScoreNv1,"0");
+        printf("Erreur d'ouverture de fichier,comp.");
+    }
+    fscanf(TScoreNv1, "%d", &valeurs);
+
+
+    if (a >= valeurs) {
+        fseek(TScoreNv1, 0, SEEK_SET);
+        fprintf(TScoreNv1, "%8d ",a);
+    }
+    fclose(TScoreNv1);
+    }
+
+int comparateurScoreNv2 (int b) {
+    int valeurs=0;
+    FILE *TScoreNv2 = fopen("./TScoreNv2.txt", "r+");// ouvre le fichier monfichier.txt se trouvant à côté de l'exécutable
+//creation tableau dans le fichier
+    if (TScoreNv2 == NULL) {
+        printf("Erreur d'ouverture du fichier TScoreNv2");
+    }
+
+    fscanf(TScoreNv2, "%d", &b);
+    if (b >= valeurs) {
+        fseek(TScoreNv2, 0, SEEK_SET);
+        fprintf(TScoreNv2, "%8d ",b);
+    }
+    fclose(TScoreNv2);
+}
+
+int comparateurScoreNv3 (int c) {
+    int valeurs=0;
+
+    FILE *TScoreNv3 = fopen("./TScoreNv3.txt", "r+");// ouvre le fichier monfichier.txt se trouvant à côté de l'exécutable
+//creation tableau dans le fichier
+    if (TScoreNv3 == NULL) {
+        printf("Erreur d'ouverture du fichier TScoreNv3");
+    }
+    fscanf(TScoreNv3, "%d", &c);
+    if (c >= valeurs) {
+        fseek(TScoreNv3, 0, SEEK_SET);
+        fprintf(TScoreNv3, "%8d ",c);
+    }
+    fclose(TScoreNv3);
+}
+
+
+
+int comparateurScoreNv4 (int d) {
+    int valeurs=0;
+
+    FILE * TScoreNv4 = fopen("./TScoreNv4.txt", "r+");// ouvre le fichier monfichier.txt se trouvant à côté de l'exécutable
+//creation tableau dans le fichier
+    if (TScoreNv4 == NULL) {
+        printf("Erreur d'ouverture du fichier TScoreNv4");
+    }
+    fscanf(TScoreNv4, "%d", &d);
+    if (d >= valeurs) {
+        fseek(TScoreNv4, 0, SEEK_SET);
+        fprintf(TScoreNv4, "%8d ",d);
+    }
+    fclose(TScoreNv4);
+}
+
+
+void sauvegarde(int niveau, int tempsRestant, int score){
+    int i, Sauve, dd1, dd2, dd3=0;
+    FILE *Sauve1,*Sauve2,*Sauve3;
+
+    //ouverture fichier pour checker si utilisé
+    if(dd1==0) {
+
+        fopen(Sauve1, "w+");
+
+        if (Sauve1 == NULL) {
+            printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+            return;
+        }
+        fseek(Sauve1, 0, SEEK_SET);
+        fprintf(Sauve1,"%d\t%d\t%d\n", niveau,tempsRestant,score);
+        fseek(Sauve1, 3*sizeof(10), SEEK_SET);
+        // Écriture des données dans le fichier binaire
+        fwrite(&niveau1, sizeof(Niveau1), 1, Sauve1);
+
+        fclose(Sauve1);
+
+        printf("Niveau enregistré dans le fichier binaire Sauve1\n");
+    }
+    else if(dd1!=0 && dd2==0) {
+
+
+        fopen(Sauve2, "w+");
+
+        if (Sauve2 == NULL) {
+            printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+            return;
+        }
+        fseek(Sauve2, 0, SEEK_SET);
+        fprintf(Sauve2,"%d\t%d\t%d\n", niveau,tempsRestant,score);
+        fseek(Sauve2, 3*sizeof(10), SEEK_SET);
+        // Écriture des données dans le fichier binaire
+        fwrite(&niveau1, sizeof(Niveau1), 1, Sauve2);
+
+        fclose(Sauve2);
+
+
+        printf("Niveau enregistré dans le fichier binaire Sauve2\n");
+    }
+    else if(dd1!=0 && dd2!=0 &&dd3==0) {
+
+        fopen(Sauve3, "w+");
+
+        if (Sauve3 == NULL) {
+            printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+            return;
+        }
+        fseek(Sauve3, 0, SEEK_SET);
+        fprintf(Sauve3,"%d\t%d\t%d\n", niveau,tempsRestant,score);
+        fseek(Sauve3, 0, SEEK_END);
+        // Écriture des données dans le fichier binaire
+        fwrite(&niveau1, sizeof(Niveau1), 1, Sauve3);
+
+        fclose(Sauve3);
+
+
+        printf("Niveau enregistré dans le fichier binaire Sauve3\n");
+    }
+
+
+    else if(dd1!=0 && dd2!=0 &&dd3!=0) {
+        do {
+            clearScreen();
+
+            printf("Toutes les sauvegardes sont pleines\n");
+            printf("Veuillez choisir une sauvegarde a ecraser\n");
+            afficheSauvegarde();
+            scanf("%d",&Sauve);
+        }while(Sauve!=1 && Sauve!=2 && Sauve!=3);
+
+        switch (Sauve) {
+            case 1:
+
+                fopen(Sauve1, "w+");
+
+                if (Sauve1 == NULL) {
+                    printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+                    return;
+                }
+                fseek(Sauve1, 0, SEEK_SET);
+                fprintf(Sauve1, "%d\t%d\t%d\n", niveau,tempsRestant,score);
+                fseek(Sauve1, 3*sizeof(10), SEEK_SET);
+                // Écriture des données dans le fichier binaire
+                fwrite(&niveau1, sizeof(Niveau1), 1, Sauve1);
+
+                fclose(Sauve1);
+
+                printf("Niveau enregistré dans le fichier binaire Sauve1\n");
+
+                break;
+            case 2:
+
+                fopen(Sauve2, "w+");
+
+                if (Sauve2 == NULL) {
+                    printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+                    return;
+                }
+                fseek(Sauve2, 0, SEEK_SET);
+                fprintf(Sauve2, "%d\t%d\t%d\n", niveau,tempsRestant,score);
+                fseek(Sauve2, 3*sizeof(10), SEEK_SET);
+                // Écriture des données dans le fichier binaire
+                fwrite(Sauve2, sizeof(Niveau1), 1, Sauve2);
+
+                fclose(Sauve2);
+
+
+                printf("Niveau enregistré dans le fichier binaire Sauve2\n");
+                break;
+            case 3:
+                fopen(Sauve3, "w+");
+
+                if (Sauve3 == NULL) {
+                    printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+                    return;
+                }
+                fseek(Sauve3, 0, SEEK_SET);
+                fprintf(Sauve3, "%d\t%d\t%d\n", niveau,tempsRestant,score);
+                fseek(Sauve3, 3*sizeof(10), SEEK_SET);
+                // Écriture des données dans le fichier binaire
+                fwrite(&niveau1, sizeof(Niveau1), 1, Sauve3);
+
+                fclose(Sauve3);
+
+
+                printf("Niveau enregistré dans le fichier binaire Sauve3\n");
+
+                break;
+        }}
+
+
+
+    fopen(Sauve3, "w+");
+
+    if (Sauve3 == NULL) {
+        printf("Erreur lors de l'ouverture du fichier pour sauvegarde du niveau 1.\n");
+        return;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//menu principal
+int menuPrincipal() {
+    int option;
+
+    do {
+
+        clearScreen();
+
+        printf("\n1.\t Regles du jeu \n");
+        printf("2.\t Lancer un nouveau Jeu a partir du niveau 1 \n");
+        printf("3.\t Charger une partie \n");
+        printf("4.\t Mot de passe  \n");
+        printf("5.\t Scores \n");
+        printf("6.\t Quitter \n\n");
+        printf("Veuillez choisir une option  \n");
+
+        fflush(stdin);
+        scanf("%d", &option);
+        clearScreen();
+    } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7);
+    clearScreen();
+    return option;
+}
+
+
+//Affichage des regles page 1
+int regles() {
+
+    char quitter;
+    printf("Les regles de la revanche de Snoopy (1/2): \n");
+    printf("1.\tRejoignez les oiseaux dans le temps imparti \n");
+    printf("2.\tNe touchez pas la balle, sinon vous perdez une vie \n");
+    printf("3-\tVous avez 3 vies \n");
+    printf("4-\tTapez ESP pour mettre pause \n");
+    printf("5-\tCertains blocs sont a deplacer, a pousser ou  a eviter! \n");
+    printf("6-\tUtilisez les fleches pour vous deplacer\n\n");
+    printf("\n\n Tapez une touche pour afficher la page suivante\n");
+    getch();
+    clearScreen();
+
+    return reglesp2();
+}
+//Affichage des regles page 2
+int reglesp2() {
+
+    char quitter;
+    printf("Les regles de la revanche de Snoopy (2/2): \n");
+    printf("\t\tInformations sur les symboles  \n");
+    Color(3,0);
+    printf("S \t ");
+    Color(15,0);
+    printf("Snoopy \n");
+    Color(14,0);
+    printf("V \t ");
+    Color(15,0);
+    printf("Oiseaux a recuperer\n");
+    Color(10,0);
+    printf("# \t ");
+    Color(15,0);
+    printf("Bloc poussable 1 fois uniquement \n");
+    Color(8,0);
+    printf("C \t ");
+    Color(15,0);
+    printf("Bloc cassable en appuyant sur C lorsque vous etes a cote du bloc\n");
+    Color(4,0);
+    printf("$ \t ");
+    Color(15,0);
+    printf("Bloc piege");
+    Color(12,0);
+    printf(", GAME OVER  \n\n");
+    Color(15,0);
+    getch();
+    clearScreen();
+
+    return menuPrincipal();
+}
+
+
+
+//les mots de passes qui menent aux niveaux
+int motdepasse(){
+    char mdp[7];//mdp a 7 chiffres + 0
+    scanf("%6s", mdp);
+
+    if (strcmp(mdp, "manger") == 0 || strcmp(mdp, "Manger") == 0 || strcmp(mdp, "MANGER") == 0) {
+
+        clearScreen();
+        printf("Taper sur A pour commencer");
+        niveau1();
+
+    }
+
+    else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
+
+        clearScreen();
+        printf("\tNIVEAU\t2\n");
+    }
+
+    else if (strcmp(mdp, "bloque") == 0 || strcmp(mdp, "Bloque") == 0 || strcmp(mdp, "BLOQUE") == 0) {
+
+        clearScreen();
+
+        printf("\tNIVEAU\t3\n");
+
+    }
+
+    else if (strcmp(mdp, "snoopy") == 0 || strcmp(mdp, "Snoopy") == 0 || strcmp(mdp, "SNOOPY") == 0) {
+
+        clearScreen();
+
+        printf("\tNIVEAU\t4\n");
+    }
+    else if (strcmp(mdp, "e") == 0 || strcmp(mdp, "E") == 0) {
+        clearScreen();
+        while (getchar() != '\n'); // Vider la mémoire tampon d'entrée
+        return menuPrincipal();
+
+    }
+    else{
+        clearScreen();
+        printf("Entrer le mot de passe ou taper E pour Exit au menu principal\n");
+        motdepasse();
+    }
+}
+
+
+
+int chargementSauvegarde() {
+    int Sauve, dd1, dd2, dd3, choixSauv = 0;
+
+    FILE *Sauve1, *Sauve2, *Sauve3;
+    do {
+        clearScreen();
+        afficheSauvegarde();
+        scanf("%d", &choixSauv);
+    } while (choixSauv != 1 || choixSauv != 2 || choixSauv != 3);
+
+//choix de sauvegarde
+    switch (choixSauv) {
+        case 1:
+            if (dd1 != 0) {
+                Sauve1 = fopen(Sauve1, "a+");
+
+                if (Sauve1 == NULL) {
+                    printf("erreur dans chargement sauvegarde");
+                }
+            } else if (dd1 == 0) {
+                clearScreen();
+
+                niveau1();
+            }
+            break;
+        case 2:
+            if (dd2 != 0) {
+                Sauve2 = fopen(Sauve2, "a+");
+
+                if (Sauve2 == NULL) {
+                    printf("erreur dans chargement sauvegarde");
+                } else if (dd2 == 0) {
+                    clearScreen();
+                    niveau1();
+                }
+                break;
+                case 3:
+                    if (dd3 != 0) {
+                        clearScreen();
+                        Sauve3 = fopen(Sauve3, "a+");
+
+                        if (Sauve3 == NULL) {
+                            printf("erreur dans chargement sauvegarde");
+                        }
+
+
+                    } else if (dd3 == 0) {
+                        clearScreen();
+                        Sauve3 = fopen(Sauve3, "w+");
+
+                        if (Sauve3 == NULL) {
+                            printf("erreur dans chargement sauvegarde");
+                        }
+                        clearScreen();
+                        niveau1();
+
+
+                    }
+                default :
+                    menuPrincipal();
+                break;
+            }
+    }}
+
+
+    int hiscore() {
+        int scoreNv1;
+        FILE *TScoreNv1 = fopen("./Projet d'Info/TScoreNv1.txt", "r");
+        if (TScoreNv1 == NULL) {
+            printf("Erreur d'ouverture de fichier,hiscore.");
+        }
+        fscanf(TScoreNv1, "%d", &scoreNv1);
+        fclose(TScoreNv1);
+
+
+        printf("\t\tHIGH SCORE\n\n");
+
+        printf("Niveau 1:\t%08d\n", scoreNv1);
+        //printf("Niveau 2:\t%08d\n",scoreNv2);
+        //printf("Niveau 3:\t%08d\n",scoreNv3);
+        //printf("Niveau 4:\t%08d\n",scoreNv4);
+        sleep(300);
+        printf("Toucher une touche pour continuer");
+        getch();
+        clearScreen();
+        menuPrincipal();
+    }
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//NIVEAUX
+    int niveau1() {
+        //Affichage pour commencer niveau
+
+        AttenteDebut();
+        clearScreen();
+
+//initialisation
+        hideCursor();  // Masquer le curseur
+
+        char cadre[10][20]; // Déclarer le tableau
+        int largeur = 20;
+        int hauteur = 10;
+        int positionY = 5; // Position initiale X du pion (lignes)
+        int positionX = 10; // Position initiale Y du pion (colonnes)
+        int vCount = 4; // Nombre de 'V' restants
+        int blocPousseY = -1; // Variables pour suivre la direction de poussée
+        int blocPousseX = -1;
+        bool blocsPousses[hauteur][largeur];
+        int score = 0;
+        int vies = 3;
+        int b = 0;
+        char texte[50];
+        bool Niveau1=false;
+        bool pauseMess = false;
+        bool gameOver = false;
+        bool isPaused = false;  // Variable pour gérer la pause
+        int tempsRestantPendantPause = 0; //variable qui suit le temps pendant la pause
+
+
+
+
+     Niveau1= true;
+        initialiserGrille(cadre, blocsPousses, hauteur, largeur, positionY,
+                          positionX); //appelle de la sous fonction pour initialise le tableau
+
+        int tempsRestant = 120; // Chronomètre initialiser a 120 secondes
+
+        // Créer un thread pour le chronomètre
+        _beginthread(Chronometre, 0, &tempsRestant);
+
+
+        while (1) {
+            if (!isPaused) { //si la fonction pause n'est pas en marche, le temps defile et le joueur peut bouger
+                effacerEcranPartiel(cadre, hauteur, largeur);
+                printf("Temps restant : %d secondes\n", tempsRestant); //afficher le temps restants
+
+
+                int a = 0;
+                if (_kbhit()) { //fonction qui permet d'interagir avec le clavier de l'utilisateur
+                    a = getch(); // permet de lire un caractère sans que l'utilisateur appuie sur la touche Entrée
+                    if (a == ' ') {
+                        togglePause(&isPaused); //on met le jeu en pause
+                        tempsRestantPendantPause = tempsRestant; //on defini le temps restant comme le temps avant la pause
+                    }
+                }
+
+
+                printf("Deplacez le pion avec les fleches"); //on affiche a l'utilisateur comment se deplacer
+                printf("%d", a);//l'ordinateur recupere la touche pressée par l'utilisateur
+
+                // Effacer la position actuelle du pion
+                cadre[positionY][positionX] = ' ';
+
+                // Mettre à jour la position du pion en fonction du déplacement
+                if (a == 72 && positionY > 1 && !blocsPousses[positionY - 1][positionX] &&
+                    cadre[positionY - 1][positionX] != 'C') { //fleche du haut et on blinde pour pas sortir du cadre
+                    if (cadre[positionY - 1][positionX] == '$') { //si la case dessus presente un piege
+                        vies--; //l'utilisateur perds une vie
+                        if (vies == 0) {
+                            system("cls");
+
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Vous avez epuise vos vies\n");
+                            printf("Appuyez sur une touche pour revenir au menu principal\n");
+                            sleep(3);
+                            getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                            menuPrincipal();
+                        } else if (vies > 0) {
+                            system("cls");//la console s'efface
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Il vous reste %d vie", vies); //affichage du nombre de vies restantes
+                            sleep(3);
+                            printf("\nAppuyez sur une touche pour recommencer...\n");
+                            while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
+                            }
+                            clearScreen();
+                            reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX,
+                                             &tempsRestant); //on re-affiche le tableau initiale
+                        }
+                    } else {
+                        positionY--;//sinon la joueur monte d'une case
+                        blocPousseY = -1; // Pousse vers le haut
+                        blocPousseX = 0;
+                    }
+                } else if (a == 80 && positionY < hauteur - 2 && !blocsPousses[positionY + 1][positionX] &&
+                           cadre[positionY + 1][positionX] !=
+                           'C') {//fleche du bas et on blinde pour pas sortir du cadre
+                    if (cadre[positionY + 1][positionX] == '$') {
+                        vies--;
+                        if (vies == 0) {
+                            system("cls");
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Vous avez epuise vos vies\n");
+                            printf("Appuyez sur une touche pour revenir au menu principal\n");
+                            getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                            Niveau1= false;
+                            menuPrincipal();
+                        } else if (vies > 0) {
+                            system("cls");//la console s'efface
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Il vous reste %d vies", vies); //affichage du nombre de vies restantes
+                            printf("\nAppuyez sur une touche pour recommencer...\n");
+                            while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
+                            }
+                            clearScreen();
+                            reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX,
+                                             &tempsRestant); //on re-affiche le tableau initiale
+                        }
+                    } else {
+                        positionY++;
+                        blocPousseY = 1; // Pousse vers le bas
+                        blocPousseX = 0;
+                    }
+                } else if (a == 75 && positionX > 1 && !blocsPousses[positionY][positionX - 1] &&
+                           cadre[positionY][positionX - 1] !=
+                           'C') { //fleche de gauche et on blinde pour pas sortir du cadre
+                    if (cadre[positionY][positionX - 1] == '$') {
+                        vies--;
+                        if (vies == 0) {
+                            system("cls");
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Vous avez epuise vos vies\n");
+                            printf("Appuyez sur une touche pour revenir au menu principal\n");
+                            getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                            Niveau1= false;
+                            menuPrincipal();
+                        } else if (vies > 0) {
+                            system("cls");//la console s'efface
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Il vous reste %d vies", vies); //affichage du nombre de vies restantes
+                            printf("\nAppuyez sur une touche pour recommencer...\n");
+                            while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
+                            }
+                            clearScreen();
+                            reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX,
+                                             &tempsRestant); //on re-affiche le tableau initiale
+                        }
+                    } else {
+                        positionX--;
+                        blocPousseY = 0;
+                        blocPousseX = -1; // Pousse vers la gauche
+                    }
+                } else if (a == 77 && positionX < largeur - 2 && !blocsPousses[positionY][positionX + 1] &&
+                           cadre[positionY][positionX + 1] !=
+                           'C') { //fleche de droite et on blinde pour pas sortir du cadre
+                    if (cadre[positionY][positionX + 1] == '$') {
+                        vies--;
+                        if (vies == 0) {
+                            system("cls");
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Vous avez epuise vos vies\n");
+                            printf("Appuyez sur une touche pour revenir au menu principal\n");
+                            getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                            menuPrincipal();
+                        } else if (vies > 0) {
+                            system("cls");//la console s'efface
+                            printf("\x1b[1;10m\n");// Activer le texte en gras
+                            Color(4, 0);
+                            gameover();
+                            Color(15, 0);
+                            printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                            sleep(2);
+
+                            printf("Il vous reste %d vies", vies); //affichage du nombre de vies restantes
+                            printf("\nAppuyez sur une touche pour recommencer...\n");
+                            while (!_kbhit()) { //fonction pour attendre que l'utilisateur appuie sur une touche
+                            }
+                            clearScreen();
+                            reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX,
+                                             &tempsRestant); //on re-affiche le tableau initiale
+                        }
+                    } else {
+                        positionX++;
+                        blocPousseY = 0;
+                        blocPousseX = 1; // Pousse vers la droite
+                    }
+                } else if (a == 'm') { // si la touche m est pressée, on revient au menu
+                    menuPrincipal(); // on appelle la fonction menu
+                } else if (a == 'c') { // Si la touche "c" est pressée
+                    // Vérifiez si le pion est sur une case adjacente à un bloc "C"
+                    if ((positionY > 1 && cadre[positionY - 1][positionX] == 'C') ||
+                        (positionY < hauteur - 2 && cadre[positionY + 1][positionX] == 'C') ||
+                        (positionX > 1 && cadre[positionY][positionX - 1] == 'C') ||
+                        (positionX < largeur - 2 && cadre[positionY][positionX + 1] == 'C')) {
+                        // Vérifiez et supprimez les blocs "C" adjacents
+                        if (positionY > 1 && cadre[positionY - 1][positionX] == 'C') {
+                            cadre[positionY - 1][positionX] = ' ';
+                        }
+                        if (positionY < hauteur - 2 && cadre[positionY + 1][positionX] == 'C') {
+                            cadre[positionY + 1][positionX] = ' ';
+                        }
+                        if (positionX > 1 && cadre[positionY][positionX - 1] == 'C') {
+                            cadre[positionY][positionX - 1] = ' ';
+                        }
+                        if (positionX < largeur - 2 && cadre[positionY][positionX + 1] == 'C') {
+                            cadre[positionY][positionX + 1] = ' ';
+                        }
+                    }
+                }
+
+                if (cadre[positionY][positionX] == '#' && !blocsPousses[positionY][positionX] &&
+                    cadre[positionY + blocPousseY][positionX + blocPousseX] == ' ') {
+                    cadre[positionY + blocPousseY][positionX + blocPousseX] = '#';
+                    blocsPousses[positionY + blocPousseY][positionX + blocPousseX] = true;
+                    cadre[positionY][positionX] = ' ';
+                }
+
+                if (tempsRestant == 1) { //fonction si le le chrono arrive au bout
+                    vies--; //le joueur perds une vie
+                    if (vies == 0) { //si le joueur n'a plus de vie
+                        system("cls");
+                        printf("\x1b[1;10m\n");// Activer le texte en gras
+                        Color(4, 0);
+                        gameover();
+                        Color(15, 0);
+                        printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                        sleep(2);
+
+                        printf("Vous avez epuise vos vies\n");
+                        printf("Appuyez sur une touche pour revenir au menu principal\n");
+                        getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                        menuPrincipal();
+                    } else if (vies > 0) {
+                        system("cls");
+                        printf("le temps est écoulé, vous perdez une vie\n");
+                        printf("il ne vous reste plus que %d vie\n", vies);
+                        printf("\nAppuyez sur une touche pour recommencer...\n");
+                        while (!_kbhit()) {
+                        }
+                        system("cls");
+                        reinitialiserJeu(cadre, blocsPousses, hauteur, largeur, &positionY, &positionX,
+                                         &tempsRestant);//on reinitialise le tableau
+                        _beginthread(Chronometre, 0, &tempsRestant); //on reinitalise le chronometre
+                    }
+                }
+
+
+                if (cadre[positionY][positionX] == 'V') { //si le pion se trouve sur une case d'un oiseaux
+                    cadre[positionY][positionX] = ' '; //l'oiseau s'efface
+                    vCount--; //le nombre d'oiseaux reduit de 1
+                    if (vCount == 0) { //si le joueur a recuperer tout les oiseaux
+                        system("cls"); // Effacer l'écran
+
+                        printf("\x1b[1;10m\n");// Activer le texte en gras
+                        Color(10, 0);
+                        Reussi();
+
+                        printf(" NIVEAU REUSSI\n"); //le joueur a reussi le niveau
+                        Color(15, 0);
+                        printf("\x1b[0m \n"); // Rétablir la mise en forme par défaut
+                        sleep(2);
+
+
+                        score = tempsRestant * 100; //calcul du score en fonction du temps restants
+                        printf("Score : %d\n", score);
+                        comparateurScoreNv1(score);//ajout du score dans le fichier comparateur pour le high score
+                        sleep(5);
+                        printf("Appuyez sur une touche pour revenir au menu principal...\n");
+                        getch(); // Attendre que l'utilisateur appuie sur une touche pour quitter
+                        Niveau1= false;
+                        menuPrincipal();
+                    }
+                }
+
+                // Mettre à jour la position du pion sur le tableau
+                Color(3, 0);
+                cadre[positionY][positionX] = 'S';
+                Color(15, 0);
+
+
+            } else { //si le jeu est en pause
+                if (!pauseMess) {
+                    Color(15, 8);
+                    printf("\nJEU EN PAUSE\nAppuyez sur ESPACE pour reprendre, Q pour revenir au menu principal, S pour sauvegarder et quitter");
+                    Color(0, 0);//on affiche a l'utilisateur le jeu en pause
+                    pauseMess = true;
+                    // message de pause apparait
+                }
+
+                int a = getch(); //on attneds que l'utilisateur re-appuye sur l'espace
+                if (a == ' ') {
+                    Color(0, 0);
+                    printf("\r"); // curseur revient au debut de la ligne
+                    for (int i = 0; i < 86; i++) {
+
+                        Color(15, 0);
+                        putchar(' '); // superpose les mots avec des espaces "efface"
+                    }
+                    printf("\r"); // curseur revient au debut de la ligne
+
+                    togglePause(&isPaused); //on remet le jeu en marche
+                    tempsRestant = tempsRestantPendantPause;//le temps reprends la ou il etait avant la pause
+                    pauseMess = false;// message de pause disparait
+                } else if (isPaused && a == 'q' || a == 'Q') {
+                    Color(15, 0);
+                    printf("\nEtes-vous sur de vouloir quitter? 1. Oui 2. Non\n");
+                    scanf("%d", &b);
+                    while (b != '1' && b != '2') {
+                        Color(0, 0);
+                        printf("\rEtes-vous sur de vouloir quitter? 1. Oui 2. Non\n");
+                        scanf("%d", &b);
+                        effacerBasCadre(3, 86);
+                    }
+                    if (b == 1) {
+                        isPaused = false;
+                        Niveau1= false;
+                        clearScreen();
+                        menuPrincipal();
+
+                    } else if (b == 2) {
+                        Color(0, 0);
+                        effacerBasCadre(10, 86);
+                        pauseMess = false;
+                    }
+
+                } else if (isPaused && a == 's' || a == 'S') {
+                    sauvegarde(1, tempsRestant, score);
+                    Niveau1= false;
+                    menuPrincipal();
+
+                }
+
+            }
+        }
+    Niveau1= false;
+
+
+
+
+        // Rétablir l'affichage du curseur à la fin du programme
+        CONSOLE_CURSOR_INFO cursorInfo;
+        cursorInfo.bVisible = true;
+        cursorInfo.dwSize = 1;
+        SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+
+
+        return menuPrincipal();//retour au menu principal
+
+    }
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Main
+
+
+
+    int main() {
+        //inititialisation
+
+        //Affichage de début
+        hideCursor();
+
+
+        printf(" \n\n \t\tLA REVANCHE DE\n");
+        Color(3, 0);
+
+        Title();
+        Color(15, 0);
+        sleep(4);
+
+
+        clearScreen();
+
+
+        while (1) {
+            int option = menuPrincipal();
+            switch (option) {
+                case 1:
+                    //affiche les regles
+                    regles();
+
+                    break;
+
+
+                case 2:
+                    //Commence a partir du niveau 1
+
+                    InfoNv1();
+                    niveau1();
+                    break;
+
+
+                case 3:
+                    chargementSauvegarde();
+                    break;
+
+
+                case 4:
+                    printf("Entrer le mot de passe\n");
+                    motdepasse();
+                    break;
+
+
+                case 5:
+                    hiscore();
+                    break;
+
+
+                case 6:
+                    // Quitte le programme
+                    return 0;
+
+                case 7:
+                    niveau1();
+                    break;
+
+                default:
+                    //rien ne se passe
+                    clearScreen();
+                    menuPrincipal();
+                    break;
+            }
+            while (getchar() != '\n');
+        }
+    }

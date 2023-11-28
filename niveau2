@@ -38,6 +38,638 @@ void initialiserGrille2(char cadre[10][20], bool blocsPousses[10][20], int haute
     cadre[8][17] = '#';
     cadre[8][18] = '#';
     cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+v
+v
+
+v
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+v
+v
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+v
+v
+v
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+v
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+
+v
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+// Placer le pion au centre du tableau
+
+    cadre[5][10] = 'S';
+
+
+    cadre[3][2] = '#'; //affichage des blocs poussables autour de snoopy
+    cadre[3][3] = '#';
+    cadre[3][4] = '#';
+    cadre[8][17] = '#';
+    cadre[8][18] = '#';
+    cadre[8][19] = '#';
+
 
 
     cadre[7][2] = 'C'; //affichage des blocs cassables

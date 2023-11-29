@@ -29,7 +29,13 @@ int menuPrincipal() {
     clearScreen();
     return option;
 }
-
+"4.\t Mot de passe  \n");
+        printf("5.\t Scores \n");
+        printf("6.\t Quitter \n");
+        scanf("%d", &option);
+        clearScreen();
+    } while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6);
+    clearScreen();
 //en rapport avec le score et temps
 int score(){
     printf("score");

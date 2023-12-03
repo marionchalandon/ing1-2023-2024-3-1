@@ -433,3 +433,748 @@ int niveau1(){
 
     return 0;
 }
+int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}int niveau1(){
+
+    int largeur =20;
+    int hauteur=10 ;
+    char cadre[hauteur][largeur];
+    int positionY = 5; // Position initiale X du pion (lignes)
+    int positionX = 10; // Position initiale Y du pion (colonnes)
+    char deplacement;
+
+    // Remplir le tableau et faire le cadre de X
+    for (int i = 0; i < hauteur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (j == 0 || j == largeur-1) {
+                cadre[i][j] = 'X';
+            }
+            else if (i == 0|| i == hauteur-1) {
+                cadre[i][j] = 'X';
+            }
+            else {
+                cadre[i][j] = ' ';
+            }
+        }
+    }
+    // Placer le pion au centre du tableau
+    cadre[positionY][positionX] = 'S';
+
+    while (1) {
+
+        system("cls"); // Effacer l'écran avec la bibliotheque windows
+
+        // Afficher le tableau car boucle
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                printf("%c ", cadre[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Deplacez le pion avec les touches z (haut), s (bas), q (gauche), d (droite), q (revenir au menu principal): ");
+        scanf(" %c", &deplacement);
+
+        // Effacer la position actuelle du pion
+        cadre[positionY][positionX] = ' ';
+
+        // Mettre à jour la position du pion en fonction du déplacement
+        if (deplacement == 'z' && positionY > 0) {
+            positionY--;
+        } else if (deplacement == 's' && positionY < 9) {
+            positionY++;
+        } else if (deplacement == 'q' && positionX > 0) {
+            positionX--;
+        } else if (deplacement == 'd' && positionX < 19) {
+            positionX++;
+        } else if (deplacement == 'q') {
+            break; // Quitter le programme si 'q' est appuyé
+        }
+
+        // Mettre à jour la position du pion sur le tableau
+        cadre[positionY][positionX] = 'S';
+    }
+
+    return 0;
+}
